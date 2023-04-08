@@ -19,6 +19,8 @@ $stmt->execute(array(':id' => $user_id));
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$jsonArray = json_encode($rows);
+
 ?>
 
 
@@ -33,6 +35,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>DronePage</title>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -52,7 +55,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-lg-10 mx-auto">
                 <div class="career-search mb-60">
 
-                    <form action="#" class="career-form mb-60">
+                    <form class="career-form mb-60">
                         <div class="row">
                             <div class="col-md-6 col-lg-3 my-3">
                                 <div class="input-group position-relative">
@@ -62,29 +65,56 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="col-md-6 col-lg-3 my-3">
                                 <div class="select-container">
-                                    <select class="custom-select">
+                                    <select class="custom-select" id="select">
                                         <option selected="">modello</option>
-                                        <option value="1">ultima manutenzione</option>
-                                        <option value="2">anno acquisto</option>
-                                        <option value="3">ore di volo</option>
+                                        <option value="nome">nome</option>
+                                        <option value="ultima_manutenzione">ultima manutenzione</option>
+                                        <option value="anno_acquisto">anno acquisto</option>
+                                        <option value="ore_di_volo">ore di volo</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3 my-3">
-                                <button type="button" class="btn btn-lg btn-block btn-light btn-custom"
-                                    id="contact-submit">
+                                <button type="button" class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
                                     Search
                                 </button>
                             </div>
                         </div>
                     </form>
 
+
+                    <script>
+
+                        var keywords;
+                        var selector;
+                        var myArray = JSON.parse('<?php echo $jsonArray; ?>');
+
+                        document.getElementById("contact-submit").addEventListener('click', e => {
+                            keywords = document.getElementById("keywords").value;
+                            selector = document.getElementById("select").value;
+
+                            if (selector === "nome") {
+                                sort_name(myArray);
+                            } else if (selector === "modello") {
+                                sort_model(myArray);
+                            } else if (selector === "ultima_manutenzione") {
+                                sort_last_man(myArray);
+                            } else if (selector === "anno_acquisto") {
+                                sort_year(myArray);
+                            } else if (selector === "ore_di_volo") {
+                                sort_fly_hours(myArray);
+                            }
+                        });
+
+                    </script>
+
                     <div class="filter-result">
                         <?php foreach ($rows as $drone): ?>
                             <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
                                 <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
                                     <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                        <?= $drone['logo'] //TODO ?>
+                                        <img src=<?= $drone['icon'] ?> class="rounded-circle" style="width: 90px;"
+                                            alt="Avatar" />
                                     </div>
                                     <div class="job-content">
                                         <h5 class="text-center text-md-left">
@@ -159,7 +189,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 titleEl.innerHTML = nome;
 
                                 var modello = this.getAttribute('data-modello');
-                                descriptionEl.innerHTML = "Model: " + modello + "<br>Dettagli:";
+                                //TODO add fly hours
+                                descriptionEl.innerHTML = "Model: " + modello + "<br>Ore volo: ";
                             });
                         }
                     </script>
