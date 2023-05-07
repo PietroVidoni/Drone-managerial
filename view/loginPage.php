@@ -31,7 +31,7 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
-                                <form method="post" action="login.php">
+                                <form method="post" action="../model/login.php">
 
                                     <?php if (isset($_GET['error'])) { ?>
 

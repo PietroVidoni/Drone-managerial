@@ -108,7 +108,7 @@ $jsonArray = json_encode($rows);
                             keywords: keywords || null
                         };
 
-                        xhr.open("POST", "updateList.php", true);
+                        xhr.open("POST", "../control/updateList.php", true);
                         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                         xhr.send(JSON.stringify(data));
                         var infoButtons = document.querySelectorAll('.info');
@@ -122,7 +122,7 @@ $jsonArray = json_encode($rows);
                     <?php
                     //include the code whitout executing it 
                     ob_start();
-                    include 'updateList.php';
+                    include '../control/updateList.php';
                     $updateListCode = ob_get_clean();
                     ?>
 

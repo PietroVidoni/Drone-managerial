@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-include 'enableConnection.php';
+include '../control/enableConnection.php';
 
 if (!isset($_SESSION['user_status']) || $_SESSION['user_status'] === false) {
-    header('Location: loginPage.php');
+    header('Location: ../view/loginPage.php');
+    exit();
 }
 
 $user_id = $_SESSION['user_info']['user_id'];
@@ -37,7 +38,7 @@ $user_id = $_SESSION['user_info']['user_id'];
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
 
-            if (file_exists("$page.php")) {
+            if (file_exists("../view/" . $page . ".php")) {
                 include "$page.php";
             } else {
                 include "404.php";

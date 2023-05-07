@@ -25,7 +25,7 @@
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
 
-                                <form method="post" action="register.php">
+                                <form method="post" action="../model/register.php">
 
                                     <?php if (isset($_GET['error'])) { ?>
 

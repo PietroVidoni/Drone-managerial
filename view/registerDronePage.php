@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(':icon', $icon, PDO::PARAM_STR);
   
   if ($stmt->execute()) {
-    header('Location: homePage.php?page=dronePage');
+    header('Location: ../view/homePage.php?page=dronePage');
     exit();
   } else {
     echo "Errore nell'inserimento del record: " . $stmt->errorInfo();

@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'enableConnection.php';
+include '../control/enableConnection.php';
 
 $dbc = Database::getInstance();
 $conn = $dbc->getConnection();
@@ -27,8 +27,8 @@ session_destroy();
 $dbc->closeConnection();
 
 if(isset($_GET['reason'])){
-    header("Location: loginPage.php?reason=".$_GET['reason']);
+    header("Location: ../view/loginPage.php?reason=".$_GET['reason']);
 }else{
-    header("Location: loginPage.php");
+    header("Location: ../view/loginPage.php");
 }
 ?>

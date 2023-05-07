@@ -2,9 +2,9 @@
 
     $page = isset($_GET['page']) ? $_GET['page'] : 'index';
 
-    if(!file_exists($page.".php")){
-        include '404.php';
+    if(!file_exists("view/". $page . ".php")){
+        include 'view/404.php';
     }else{
-        include "loginPage.php";
+        include "view/loginPage.php";
     }
 ?>

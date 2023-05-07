@@ -28,7 +28,7 @@
                     <a class="dropdown-item" href="homePage.php?page=profilePage">My Profile</a>
                     <a class="dropdown-item" href="homePage.php?page=settings">Settings</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php?reason=Log%20out%20done%20<br>%20Successfuly">Logout</a>  
+                    <a class="dropdown-item" href="../model/logout.php?reason=Log%20out%20done%20<br>%20Successfuly">Logout</a>  
                 </div>
             </li>
         </ul>

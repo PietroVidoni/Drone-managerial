@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'enableConnection.php';
+include '../control/enableConnection.php';
 
 $session_timeout = 600; //timer 10 min
 
@@ -23,7 +23,7 @@ if (isset($_POST['username'], $_POST['password'])) {
 
     if (empty($username) || empty($password)) {
         $error = "empty%20username%20or%20password%20field";
-        header("Location: loginPage.php?error=$error");
+        header("Location: ../view/loginPage.php?error=$error");
     } else {
 
         $stmt = $conn->prepare("SELECT id, password_hash, session_id FROM utenti WHERE username = :username LIMIT 1");
@@ -51,11 +51,11 @@ if (isset($_POST['username'], $_POST['password'])) {
             $_SESSION['user_status'] = true;
             $_SESSION['user_info'] = array("user_id" => $user_id, "username" => $username);
 
-            header("Location: homePage.php");
+            header("Location: ../view/homePage.php");
 
         } else {
             $error = "wrong%20username%20or%20password";
-            header("Location: loginPage.php?error=$error");
+            header("Location: ../view/loginPage.php?error=$error");
         }
     }
 }

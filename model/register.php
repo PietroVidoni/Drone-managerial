@@ -1,5 +1,5 @@
 <?php 
-    include 'enableConnection.php';
+    include '../control/enableConnection.php';
 
     session_start();
 
@@ -19,13 +19,13 @@
 
     if ($_password !== $_password2) {
         $error = "Passwords do not match";
-        header("Location: registerPage.php?error=$error");
+        header("Location: ../view/registerPage.php?error=$error");
         exit();
     }
     
     if ($_password === $_username) {
         $error = "Username and password can't match";
-        header("Location: registerPage.php?error=$error");
+        header("Location: ../view/registerPage.php?error=$error");
         exit();
     }
 
@@ -35,7 +35,7 @@
     
     if ($count > 0) {
         $error = "Username already in use";
-        header("Location: registerPage.php?error=$error");
+        header("Location: ../view/registerPage.php?error=$error");
         exit();
     }
 
@@ -45,7 +45,7 @@
     
     if ($count > 0) {
         $error = "Email already in use";
-        header("Location: registerPage.php?error=$error");
+        header("Location: ../view/registerPage.php?error=$error");
         exit();
     }
 
@@ -60,7 +60,7 @@
         
     if ($stmt->execute()) {
         echo "Nuovo record inserito con successo";
-        header("Location: loginPage.php");
+        header("Location: ../view/loginPage.php");
     } else {
         echo "Errore nell'inserimento del record: " . $stmt->errorInfo();
     }
