@@ -57,12 +57,16 @@ function updatePopUpButtons(infoButtons){
         infoButtons[i].addEventListener('click', function () {
             popupEl.style.display = 'block';
 
-            var nome = this.getAttribute('data-nome');
-            titleEl.innerHTML = nome;
+            var name = this.getAttribute('data-name');
+            var model = this.getAttribute('data-model');
+            var fly_hours = this.getAttribute('data-fly_hours');
+            var last_man = this.getAttribute('data-last_man');
+            
+            
+            titleEl.innerHTML = name;
 
-            var modello = this.getAttribute('data-modello');
             //TODO add fly hours
-            descriptionEl.innerHTML = "Model: " + modello + "<br>Ore volo: ";
+            descriptionEl.innerHTML = "Model: " + model + "<br>Ore volo: " + fly_hours + "<br>Last Manutenction: " + last_man;
         });
     }
 }

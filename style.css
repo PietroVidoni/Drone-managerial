@@ -7,7 +7,7 @@ body {
   background-color: rgb(47, 49, 48);
 }
 
-.bg-color-white{
+.bg-color-white {
   background-color: white;
 }
 
@@ -208,12 +208,16 @@ ul {
   transform: translate(-50%, -50%);
 }
 
-.contacts{
+.contacts {
   background-color: white;
 }
 
 .page-title {
-  margin-top: 70px; 
+  margin-top: 70px;
+}
+
+.page-div {
+  padding-top: 50px;
 }
 
 @media (min-width: 576px) {

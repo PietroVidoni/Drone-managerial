@@ -16,11 +16,16 @@ foreach ($drones as $drone) {
 
 printList($results);
 function printList($array) {
+
+    
     foreach ($array as $drone) {
+    
+        $icon = $drone['icon'] != null ? $drone['icon'] : ".\assets\img\png\default_drone.png" ;
+
         echo '<div class="job-box d-md-flex align-items-center justify-content-between mb-30">';
         echo '<div class="job-left my-4 d-md-flex align-items-center flex-wrap">';
         echo '<div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">';
-        echo '<img src=' . $drone['icon'] . ' class="rounded-circle" style="width: 90px;" alt="Avatar" />';
+        echo '<img src=' . $icon . ' class="rounded-circle" style="width: 90px;" alt="Avatar" />';
         echo '</div>';
         echo '<div class="job-content">';
         echo '<h5 class="text-center text-md-left">Name: ' . $drone['nome'] . '</h5>';
@@ -33,8 +38,10 @@ function printList($array) {
         echo '</div>';
         echo '<div class="job-right my-4 flex-shrink-0">';
         echo '<button href="#" class="btn d-block w-100 d-sm-inline-block btn-light info"';
-        echo 'data-nome="' . $drone['nome'] . '"';
-        echo 'data-modello="' . $drone['modello'] . '">Info</button>';
+        echo 'data-name="' . $drone['nome'] . '"';
+        echo 'data-last_man="' . $drone['ultima_manutenzione'] . '"';
+        echo 'data-fly_hours="' . $drone['ore_di_volo'] . '"';
+        echo 'data-model="' . $drone['modello'] . '">Info</button>';
         echo '</div>';
         echo '</div>';
     }

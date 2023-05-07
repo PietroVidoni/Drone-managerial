@@ -9,18 +9,6 @@ if (!isset($_SESSION['user_status']) || $_SESSION['user_status'] === false) {
 
 $user_id = $_SESSION['user_info']['user_id'];
 
-$dbc = Database::getInstance();
-$conn = $dbc->getConnection();
-
-$stmt = $conn->prepare("SELECT * FROM droni WHERE utente_id = :id");
-$stmt->execute(array(':id' => $user_id));
-
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$jsonArray = json_encode($rows);
-
-$conn = null;
-
 ?>
 
 <!DOCTYPE html>

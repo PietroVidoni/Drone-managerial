@@ -1,3 +1,19 @@
+<?php 
+
+$dbc = Database::getInstance();
+$conn = $dbc->getConnection();
+
+$stmt = $conn->prepare("SELECT * FROM droni WHERE utente_id = :id");
+$stmt->execute(array(':id' => $user_id));
+
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$jsonArray = json_encode($rows);
+
+//$conn = null;
+//TODO check if not close connection is best practice 
+?>
+
 <div class="container page-title">
     <div class="row">
         <div class="col-lg-10 mx-auto mb-4">

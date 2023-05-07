@@ -24,16 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(':icon', $icon, PDO::PARAM_STR);
   
   if ($stmt->execute()) {
-    echo "Nuovo record inserito con successo";
+    header('Location: homePage.php?page=dronePage');
+    exit();
   } else {
     echo "Errore nell'inserimento del record: " . $stmt->errorInfo();
   }
 }
-
-
 ?>
 
-<div class="container">
+<div class="container page-title">
   <div class="row">
     <div class="col-12">
       <h3 class="h3-reg">Register your Drone</h3>

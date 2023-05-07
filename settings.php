@@ -14,7 +14,7 @@
     }
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 page-div">
     <h1>
         <?php echo _("Impostazioni"); ?>
     </h1>
