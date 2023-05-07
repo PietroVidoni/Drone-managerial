@@ -1,12 +1,14 @@
 <?php
+
+    require_once 'config/config.php';
     class Database {
         private static $instance = null;
         private static $conn;
     
-        private $servername = "localhost";
-        private $username = "client";
-        private $password = "client";
-        private $dbname = "login";
+        private $servername = DB_HOST;
+        private $username = DB_NAME;
+        private $password = DB_USER;
+        private $dbname = DB_PASSWORD;
     
         private function __construct() {
             try {
