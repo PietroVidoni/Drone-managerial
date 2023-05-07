@@ -16,8 +16,9 @@ $conn = $dbc->getConnection();
 $stmt = $conn->prepare("SELECT * FROM droni WHERE utente_id = :id");
 $stmt->execute(array(':id' => $user_id));
 
-$stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$conn = null;
 
 $jsonArray = json_encode($rows);
 
@@ -89,7 +90,7 @@ $jsonArray = json_encode($rows);
                         var selector;
                         var myArray = JSON.parse('<?php echo $jsonArray; ?>');
 
-                        document.getElementById("contact-submit").addEventListener('click', e => {
+                        document.getElementById("search-btn").addEventListener('click', e => {
                             keywords = document.getElementById("keywords").value;
                             selector = document.getElementById("select").value;
 
@@ -104,49 +105,75 @@ $jsonArray = json_encode($rows);
                             } else if (selector === "ore_di_volo") {
                                 sort_fly_hours(myArray);
                             }
+
+                            // Creare una nuova richiesta AJAX
+                            var xhr = new XMLHttpRequest();
+
+                            // Impostare la funzione da chiamare quando la richiesta viene completata con successo
+                            xhr.onreadystatechange = function () {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    // La richiesta è stata completata e il server ha restituito una risposta
+                                    console.log(this.responseText);
+                                    // Aggiornare la lista sulla pagina
+                                    document.querySelector('.filter-result').innerHTML = this.responseText;
+                                }
+                            };
+
+                            // Impostare il metodo HTTP e l'URL del file PHP che riceverà la richiesta
+                            xhr.open("POST", "", true);
+
+                            // Impostare l'intestazione della richiesta per indicare che si sta inviando un oggetto JSON
+                            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                            // Convertire l'oggetto JSON in una stringa
+                            var jsonData = JSON.stringify(myArray);
+
+                            // Invio della richiesta al server
+                            xhr.send(jsonData);
                         });
 
                     </script>
 
                     <div class="filter-result">
-                        <?php foreach ($rows as $drone): ?>
-                            <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
-                                <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-                                    <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                        <img src=<?= $drone['icon'] ?> class="rounded-circle" style="width: 90px;"
-                                            alt="Avatar" />
-                                    </div>
-                                    <div class="job-content">
-                                        <h5 class="text-center text-md-left">
-                                            Name:
-                                            <?= $drone['nome'] ?>
-                                        </h5>
-                                        <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-                                            <li class="mr-md-4">
-                                                <i class="zmdi zmdi-pin mr-2"></i>
-                                                Model:
-                                                <?= $drone['modello'] ?>
-                                            </li>
-                                            <li class="mr-md-4">
-                                                <i class="zmdi zmdi-money mr-2"></i>
-                                                Purchase date:
-                                                <?= $drone['anno_acquisto'] ?>
-                                            </li>
-                                            <li class="mr-md-4">
-                                                <i class="zmdi zmdi-time mr-2"></i>
-                                                Last maintenance:
-                                                <?= $drone['ultima_manutenzione'] ?>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="job-right my-4 flex-shrink-0">
-                                    <button href="#" class="btn d-block w-100 d-sm-inline-block btn-light info"
-                                        data-nome="<?= $drone['nome'] ?>"
-                                        data-modello="<?= $drone['modello'] ?>">Info</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                        <?php
+                        function printList($array) {
+                            foreach ($array as $drone) {
+                                echo '<div class="job-box d-md-flex align-items-center justify-content-between mb-30">';
+                                echo '<div class="job-left my-4 d-md-flex align-items-center flex-wrap">';
+                                echo '<div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">';
+                                echo '<img src=' . $drone['icon'] . ' class="rounded-circle" style="width: 90px;" alt="Avatar" />';
+                                echo '</div>';
+                                echo '<div class="job-content">';
+                                echo '<h5 class="text-center text-md-left">Name: ' . $drone['nome'] . '</h5>';
+                                echo '<ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">';
+                                echo '<li class="mr-md-4"><i class="zmdi zmdi-pin mr-2"></i>Model: ' . $drone['modello'] . '</li>';
+                                echo '<li class="mr-md-4"><i class="zmdi zmdi-money mr-2"></i>Purchase date: ' . $drone['anno_acquisto'] . '</li>';
+                                echo '<li class="mr-md-4"><i class="zmdi zmdi-time mr-2"></i>Last maintenance: ' . $drone['ultima_manutenzione'] . '</li>';
+                                echo '</ul>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '<div class="job-right my-4 flex-shrink-0">';
+                                echo '<button href="#" class="btn d-block w-100 d-sm-inline-block btn-light info"';
+                                echo 'data-nome="' . $drone['nome'] . '"';
+                                echo 'data-modello="' . $drone['modello'] . '">Info</button>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+                        }
+
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            // Qui inserisci la logica per aggiornare il tuo array $myArray
+                            $myArray = array( /* array aggiornato */);
+
+                            // Aggiorna la lista
+                            printList($myArray);
+                        } else {
+                            // Stampa la lista per la prima volta
+                            $myArray = json_decode($jsonArray, true);
+                            printList($myArray);
+                        }
+                        ?>
+
                     </div>
 
                     <div id='popup' class='modal'>
@@ -203,7 +230,7 @@ $jsonArray = json_encode($rows);
                                     <i class="zmdi zmdi-long-arrow-left"></i>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a classcontact-submit="page-link" href="#">1</a></li>
                             <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">2</a></li>
                             <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">...</a></li>
