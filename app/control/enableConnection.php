@@ -5,10 +5,10 @@
         private static $instance = null;
         private static $conn;
     
+        private $dbname = DB_NAME;
         private $servername = DB_HOST;
-        private $username = DB_NAME;
-        private $password = DB_USER;
-        private $dbname = DB_PASSWORD;
+        private $password = DB_PASSWORD;
+        private $username = DB_USER;
     
         private function __construct() {
             try {
@@ -16,16 +16,15 @@
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 echo "Errore di connessione al database: " . $e->getMessage();
+                header("Location: ..\view\connectionErrorPage.php");
                 exit;
             }
         }
-    
-        
+    //TODO fixeME
         public static function getInstance() {
             if (!self::$instance) {
                 self::$instance = new Database();
             }
-            
             return self::$instance;
         }
     

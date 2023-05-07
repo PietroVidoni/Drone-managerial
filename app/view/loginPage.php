@@ -1,7 +1,7 @@
-<?php 
-    session_start();
+<?php
+session_start();
 
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
 ?>
 
@@ -35,13 +35,17 @@
 
                                     <?php if (isset($_GET['error'])) { ?>
 
-                                    <p class="error"><?php echo $_GET['error']; ?></p>
+                                        <p class="error">
+                                            <?php echo $_GET['error']; ?>
+                                        </p>
 
                                     <?php } ?>
 
                                     <?php if (isset($_GET['reason'])) { ?>
 
-                                    <p class="reason"><?php echo $_GET['reason']; ?></p>
+                                        <p class="reason">
+                                            <?php echo $_GET['reason']; ?>
+                                        </p>
 
                                     <?php } ?>
 
@@ -56,6 +60,10 @@
                                             name="password" required />
                                         <label class="form-label" for="typePasswordX">Password</label>
                                     </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50"
+                                            href="forgotPasswordPage.php">Forgot
+                                            password?</a></p>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
