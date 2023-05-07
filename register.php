@@ -9,9 +9,13 @@
     $error = "";
 
     $_username =  $_POST['username'];
+    $_name =  $_POST['name'];
+    $_surname =  $_POST['surname'];
     $_password = $_POST['password1'];
     $_password2 = $_POST['password2'];
     $_email = $_POST['email'];
+
+    var_dump($_name  ); 
 
     if ($_password !== $_password2) {
         $error = "Passwords do not match";
@@ -47,10 +51,12 @@
 
     $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
     
-    $stmt = $conn->prepare("INSERT INTO utenti (username, password_hash, email) VALUES (:username, :password, :email)");
+    $stmt = $conn->prepare("INSERT INTO utenti (username, password_hash, email, nome, cognome) VALUES (:username, :password, :email, :nome, :cognome)");
     $stmt->bindParam(':username', $_username);
     $stmt->bindParam(':password', $hashed_password);
     $stmt->bindParam(':email', $_email);
+    $stmt->bindParam(':nome', $_name);
+    $stmt->bindParam(':cognome', $_surname);
         
     if ($stmt->execute()) {
         echo "Nuovo record inserito con successo";

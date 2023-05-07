@@ -1,6 +1,22 @@
-body{
-    background:#f5f5f5;
-    margin-top:20px;}
+body {
+  background: #f5f5f5;
+  margin-top: 70px;
+}
+
+.bcrnk-color-gray {
+  background-color: rgb(47, 49, 48);
+}
+
+.bg-color-white{
+  background-color: white;
+}
+
+.round-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
 
 /* ===== Career ===== */
 .career-form {
@@ -50,7 +66,7 @@ body{
 
 .career-form .custom-select:focus {
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .career-form .select-container {
@@ -69,13 +85,13 @@ body{
 
 .filter-result .job-box {
   -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-          box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
   border-radius: 10px;
   padding: 10px 35px;
 }
 
 ul {
-  list-style: none; 
+  list-style: none;
 }
 
 .list-disk li {
@@ -101,11 +117,11 @@ ul {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   border-radius: 65px;
 }
 
@@ -121,7 +137,7 @@ ul {
 
 .job-overview {
   -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-          box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
   border-radius: 10px;
 }
 
@@ -173,8 +189,9 @@ ul {
   position: relative;
   top: 1px;
 }
+
 .mb-30 {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 #popup {
@@ -182,6 +199,21 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#registerForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contacts{
+  background-color: white;
+}
+
+.page-title {
+  margin-top: 70px; 
 }
 
 @media (min-width: 576px) {
@@ -200,4 +232,252 @@ ul {
   #popup .modal-dialog {
     max-width: 1000px;
   }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+html,
+body {
+  height: 100%;
+  background-color: #152733;
+}
+
+
+.form-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.form-holder .form-content {
+  position: relative;
+  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.form-content .form-items {
+  border: 3px solid #060606;
+  padding: 40px;
+  display: inline-block;
+  width: 100%;
+  min-width: 540px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: left;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.form-content h3 {
+  color: #050505;
+  text-align: left;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-content h3.form-title {
+  margin-bottom: 30px;
+}
+
+.form-content p {
+  color: #1b1b1b;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+
+
+.form-content label,
+.was-validated .form-check-input:invalid~.form-check-label,
+.was-validated .form-check-input:valid~.form-check-label {
+  color: #0a0a0a;
+}
+
+.form-content input[type=text],
+.form-content input[type=password],
+.form-content input[type=email],
+.form-content select {
+  width: 100%;
+  padding: 9px 20px;
+  text-align: left;
+  border: 1;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  color: #000;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+
+.btn-primary {
+  background-color: #6C757D;
+  outline: none;
+  border: 0px;
+  box-shadow: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #495056;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+}
+
+.form-content textarea {
+  position: static !important;
+  width: 100%;
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-align: left;
+  background-color: #fff;
+  border: 1;
+  border-color: #000000;
+  font-size: 15px;
+  font-weight: 300;
+  color: #000000;
+  outline: none;
+  resize: none;
+  height: 120px;
+  -webkit-transition: none;
+  transition: none;
+  margin-bottom: 14px;
+}
+
+.form-content textarea:hover,
+.form-content textarea:focus {
+  border: 0;
+  background-color: #ebeff8;
+  color: #000000;
+}
+
+.mv-up {
+  margin-top: -9px !important;
+  margin-bottom: 8px !important;
+}
+
+.invalid-feedback {
+  color: #ff606e;
+}
+
+.valid-feedback {
+  color: #2acc80;
+}
+
+.form-body {
+  background-color: #ffffff;
+  padding: 50px 0;
+}
+
+.form-content {
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-items {
+  margin-bottom: 20px;
+}
+
+.h3-reg {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.p-reg {
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  color: #495057;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: .375rem .75rem;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+.form-check-input {
+  margin-top: .25rem;
+  margin-right: .5rem;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  border-radius: .25rem;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:focus,
+.btn.focus {
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .5);
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+}
+
+.error {
+  color: red;
+  margin-top: .25rem;
 }

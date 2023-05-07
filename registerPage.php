@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,34 +28,50 @@
 
                                     <?php if (isset($_GET['error'])) { ?>
 
-                                        <p class="error"><?php echo $_GET['error']; ?></p>
+                                    <p class="error">
+                                        <?php echo $_GET['error']; ?>
+                                    </p>
 
-                                    <?php } ?>                                
+                                    <?php } ?>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="text" id="typeEmailX" class="form-control form-control-lg" required name="username"/>
+                                        <input type="text" id="typeEmailX" class="form-control form-control-lg" required
+                                            name="username" />
                                         <label class="form-label" for="typeEmailX">Username</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" required name="email"/>
+                                        <input type="email" id="typeEmailX" class="form-control form-control-lg"
+                                            required name="email" />
                                         <label class="form-label" for="typeEmailX">Email</label>
+                                    </div>
+                                    
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" id="typename" class="form-control form-control-lg" required
+                                            name="name" />
+                                        <label class="form-label" for="typename">nome</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" id="typePasswordX"
-                                            class="form-control form-control-lg" name="password1" required/>
+                                        <input type="text" id="typesurname" class="form-control form-control-lg" required
+                                            name="surname" />
+                                        <label class="form-label" for="typesurname">cognome</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                                            name="password1" required />
                                         <label class="form-label" for="typePasswordX">Password</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" id="typePasswordX"
-                                            class="form-control form-control-lg" name="password2" required/>
+                                        <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                                            name="password2" required />
                                         <label class="form-label" for="typePasswordX">Repeat Password</label>
                                     </div>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
-                                    
+
                                 </form>
                             </div>
                         </div>

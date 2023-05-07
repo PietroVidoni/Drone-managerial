@@ -4,8 +4,8 @@
         private static $conn;
     
         private $servername = "localhost";
-        private $username = "root";
-        private $password = "";
+        private $username = "client";
+        private $password = "client";
         private $dbname = "login";
     
         private function __construct() {
@@ -18,6 +18,7 @@
             }
         }
     
+        
         public static function getInstance() {
             if (!self::$instance) {
                 self::$instance = new Database();
@@ -29,7 +30,7 @@
         public function getConnection() {
             return self::$conn;
         }
-
+        
         public function closeConnection(){
            self::$conn = null;
         }

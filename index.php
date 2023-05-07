@@ -1,6 +1,4 @@
 <?php
-    include "enableConnection.php";
-    session_start();
 
     $page = isset($_GET['page']) ? $_GET['page'] : 'index';
 

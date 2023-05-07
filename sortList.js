@@ -51,3 +51,18 @@ function updateList() {
     xhttp.open("GET", "getDrones.php?keywords=" + keywords + "&selector=" + selector, true);
     xhttp.send();
 }
+
+function updatePopUpButtons(infoButtons){
+    for (var i = 0; i < infoButtons.length; i++) {
+        infoButtons[i].addEventListener('click', function () {
+            popupEl.style.display = 'block';
+
+            var nome = this.getAttribute('data-nome');
+            titleEl.innerHTML = nome;
+
+            var modello = this.getAttribute('data-modello');
+            //TODO add fly hours
+            descriptionEl.innerHTML = "Model: " + modello + "<br>Ore volo: ";
+        });
+    }
+}

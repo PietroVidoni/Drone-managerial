@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => '__root__',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'da5af6a72ae473ee58023d1cbd6aca106e4f7886',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'da5af6a72ae473ee58023d1cbd6aca106e4f7886',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'gettext/gettext' => array(
+            'pretty_version' => 'v5.7.0',
+            'version' => '5.7.0.0',
+            'reference' => '8657e580747bb3baacccdcebe69cac094661e404',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../gettext/gettext',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'gettext/languages' => array(
+            'pretty_version' => '2.10.0',
+            'version' => '2.10.0.0',
+            'reference' => '4d61d67fe83a2ad85959fe6133d6d9ba7dddd1ab',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../gettext/languages',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);
