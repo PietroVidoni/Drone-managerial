@@ -21,7 +21,7 @@
             </div>
         <?php endif; ?>
 
-        <a href="homePage.php?page=dronePage" class="btn btn-primary mt-4">Torna alla pagina principale</a>
+        <a href="../homePage.php?page=dronePage" class="btn btn-primary mt-4">Torna alla pagina principale</a>
     </div>
 </body>
 

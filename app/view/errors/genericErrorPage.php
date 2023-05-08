@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="card-footer text-center">
-                        <a href="homePage.php?page=dronePage" class="btn btn-primary">Torna alla homepage</a>
+                        <a href="../homePage.php?page=dronePage" class="btn btn-primary">Torna alla homepage</a>
                     </div>
                 </div>
             </div>

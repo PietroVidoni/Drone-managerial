@@ -21,7 +21,7 @@ if (isset($_POST['email'])) {
     $count = $stmt->fetchColumn();
 
     if ($count != 1) {
-        header("Location: ../view/genericErrorPage.php?error=Indirizzo%20email%20non%20trovato"); //TODO FIXME 
+        header("Location: ../view/errors/genericErrorPage.php?error=Indirizzo%20email%20non%20trovato"); //TODO FIXME 
         exit();
     } else {
         try {
@@ -59,12 +59,12 @@ if (isset($_POST['email'])) {
                 header("Location: forgotPasswordPage.php");
             }
         } catch (Exception $e) {
-            header("Location: ../view/genericErrorPage.php?error=".$e->getMessage());
+            header("Location: ../view/errors/genericErrorPage.php?error=".$e->getMessage());
             exit();
         }
     }
 } else {
-    header("Location: ../view/genericErrorPage.php?error=Session%20Lost"); //TODO FIXME 
+    header("Location: ../view/errors/genericErrorPage.php?error=Session%20Lost"); //TODO FIXME 
     exit();
 }
 ?>

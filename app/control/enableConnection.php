@@ -16,7 +16,7 @@
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 //echo "Errore di connessione al database: " . $e->getMessage();
-                header("Location: ../view/connectionErrorPage.php?error=".$e->getMessage());
+                header("Location: ../view/errors/connectionErrorPage.php?error=".$e->getMessage());
                 exit();
             }
         }

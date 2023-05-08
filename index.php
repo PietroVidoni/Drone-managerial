@@ -3,7 +3,7 @@
     $page = isset($_GET['page']) ? $_GET['page'] : 'index';
 
     if(!file_exists("app/view/". $page . ".php")){
-        include 'app/view/404.php';
+        include 'app/view/errors/404.php';
     }else{
         include "app/view/loginPage.php";
     }
