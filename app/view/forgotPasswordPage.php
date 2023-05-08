@@ -21,7 +21,7 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Reset Password</h2>
                                 <p class="text-white-50 mb-5">Enter your account email</p>
 
-                                <form method="post" action="resetPassword.php">
+                                <form method="post" action="../control/resetPassword.php">
 
                                     <?php if (isset($_GET['valid'])) { ?>
 

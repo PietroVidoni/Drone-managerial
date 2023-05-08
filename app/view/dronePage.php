@@ -53,7 +53,7 @@ $jsonArray = json_encode($rows);
                             </button>
                         </div>
                         <div class="col-md-6 col-lg-3 my-3">
-                            <a href="app/homePage.php?page=registerDronePage" type="buttonRegister" class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
+                            <a href="homePage.php?page=registerDronePage" type="buttonRegister" class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
                                 Register drone
                             </a>
                         </div>

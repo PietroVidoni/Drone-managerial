@@ -15,9 +15,9 @@
                 self::$conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
-                echo "Errore di connessione al database: " . $e->getMessage();
-                header("Location: ..\view\connectionErrorPage.php");
-                exit;
+                //echo "Errore di connessione al database: " . $e->getMessage();
+                header("Location: ../view/connectionErrorPage.php?error=".$e->getMessage());
+                exit();
             }
         }
     //TODO fixeME

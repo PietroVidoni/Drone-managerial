@@ -1,7 +1,7 @@
 <?php 
 
 define('DB_HOST', 'localhost');       
-define('DB_NAME', 'drone-managerial');   
+define('DB_NAME', 'login');   
 define('DB_USER', 'client');    
 define('DB_PASSWORD', 'client');    
 

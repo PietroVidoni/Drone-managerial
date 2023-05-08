@@ -11,7 +11,7 @@
 
 $(window).on('unload', () => {
     $.ajax({
-        url: 'logout.php',
+        url: '../model/logout.php',
         async: false,
         type: 'GET',
         success: function() {
@@ -28,7 +28,7 @@ var sessionUpdateInterval = 90 * 1000;
 // Funzione per inviare una richiesta AJAX al server per aggiornare il timestamp della sessione
 function updateSession() {
   $.ajax({
-    url: "heartbeat.php",
+    url: "../control/heartbeat.php",
     type: "POST",
     success: () => {
       //console.log("Session updated");
