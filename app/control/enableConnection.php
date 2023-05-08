@@ -15,12 +15,10 @@
                 self::$conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
-                //echo "Errore di connessione al database: " . $e->getMessage();
                 header("Location: ../view/errors/connectionErrorPage.php?error=".$e->getMessage());
                 exit();
             }
         }
-    //TODO fixeME
         public static function getInstance() {
             if (!self::$instance) {
                 self::$instance = new Database();

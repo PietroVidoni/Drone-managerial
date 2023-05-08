@@ -26,7 +26,7 @@ if (isset($_POST['username'], $_POST['password'])) {
         header("Location: ../view/loginPage.php?error=$error");
     } else {
 
-        $stmt = $conn->prepare("SELECT id, password_hash, session_id FROM utenti WHERE username = :username LIMIT 1");
+        $stmt = $conn->prepare("SELECT id, password_hash, session_id, last_activity FROM utenti WHERE username = :username LIMIT 1");
         $stmt->execute(array(':username' => $username));
         $stmt->errorInfo();
 
@@ -34,13 +34,15 @@ if (isset($_POST['username'], $_POST['password'])) {
         $user_id = $row['id'];
         $hash = $row['password_hash'];
         $stored_session_id = $row['session_id'];
+        $last_activity = $row['last_activity'];
 
         if (password_verify($password, $hash)) {
             //TODO check condition
-            if (!empty($stored_session_id) && $stored_session_id !== session_id() && (time() - strtotime($last_activity)) < $session_timeout) {
+
+            if (!empty($stored_session_id) && $stored_session_id !== session_id() && (time() - strtotime($row['last_activity'])) < $session_timeout) {
                 header("Location: logout.php?reason=User%20already%20logged%20in%20on%20another%20browser%20or%20device");
                 die();
-            }
+            }            
 
             $stmt = $conn->prepare("UPDATE utenti SET session_id = :session_id, last_activity = NOW() WHERE id = :user_id");
             $stmt->execute(array(':session_id' => session_id(), ':user_id' => $user_id));

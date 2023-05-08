@@ -7,8 +7,6 @@
     xhr.send();
 }); */
 
-
-
 $(window).on('unload', () => {
     $.ajax({
         url: '../model/logout.php',
