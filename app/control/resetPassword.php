@@ -55,7 +55,7 @@ if (isset($_POST['email'])) {
             throw new Exception('Message could not be sent. Mailer Error: ' . $mail->ErrorInfo);
         }
 
-        header("Location: ../views/forgotPasswordPage.php");
+        header("Location: ../view/forgotPasswordPage.php");
         exit();
     } catch (Exception $e) {
         header("Location: ../view/errors/genericErrorPage.php?error=" . urlencode($e->getMessage()));

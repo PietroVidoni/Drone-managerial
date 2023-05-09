@@ -1,33 +1,33 @@
 <?php
 
-    session_start();
+session_start();
 
-    $token = $_GET['reset_token'];
+$token = $_GET['reset_token'];
 
-    $dbc = Database::getInstance();
-    $conn = $dbc->getConnection();
+$dbc = Database::getInstance();
+$conn = $dbc->getConnection();
 
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM utenti WHERE token = :token");
-    $stmt->execute(array(':token' => $token));
-    $count = $stmt->fetchColumn();
+$stmt = $conn->prepare("SELECT COUNT(*) FROM utenti WHERE token = :token");
+$stmt->execute(array(':token' => $token));
+$count = $stmt->fetchColumn();
 
-    if ($stmt->rowCount() > 0) {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $timestamp = $row['timestamp'];
+if ($stmt->rowCount() > 0) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $timestamp = $row['timestamp'];
 
-        // Verifica se il token è scaduto (10 minuti di validità)
-        $expiryTime = strtotime($timestamp) + (10 * 60); // Aggiunge 10 minuti al timestamp di creazione
-        if (time() < $expiryTime) {
-            $valid = true;
-            $_SESSION['reset_token'] = $token;
-        }
+    // Verifica se il token è scaduto (10 minuti di validità)
+    $expiryTime = strtotime($timestamp) + (10 * 60); // Aggiunge 10 minuti al timestamp di creazione
+    if (time() < $expiryTime) {
+        $valid = true;
+        $_SESSION['reset_token'] = $token;
     }
+}
 
-    if (!$valid) {
-        // show an error message
-        echo "Invalid or expired token.";
-        header("Location: forgotPasswordPage.php?valid=Invalid or expired token");
-    }
+if (!$valid) {
+    // show an error message
+    //echo "Invalid or expired token.";
+    header("Location: forgotPasswordPage.php?valid=Invalid or expired token");
+}
 
 ?>
 

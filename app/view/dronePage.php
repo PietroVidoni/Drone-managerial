@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $dbc = Database::getInstance();
 $conn = $dbc->getConnection();

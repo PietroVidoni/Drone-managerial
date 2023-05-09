@@ -22,12 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(':ore_di_volo', $ore_di_volo, PDO::PARAM_INT);
   $stmt->bindParam(':ultima_manutenzione', $ultima_manutenzione, PDO::PARAM_STR);
   $stmt->bindParam(':icon', $icon, PDO::PARAM_STR);
-  
+
   if ($stmt->execute()) {
     header('Location: ../view/homePage.php?page=dronePage');
     exit();
   } else {
-    echo "Errore nell'inserimento del record: " . $stmt->errorInfo();
+    header("Location: errors/connectionErrorPage.php?error=" . $stmt->errorInfo());
   }
 }
 ?>

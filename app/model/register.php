@@ -15,8 +15,6 @@
     $_password2 = $_POST['password2'];
     $_email = $_POST['email'];
 
-    var_dump($_name  ); 
-
     if ($_password !== $_password2) {
         $error = "Passwords do not match";
         header("Location: ../view/registerPage.php?error=$error");
@@ -59,9 +57,9 @@
     $stmt->bindParam(':cognome', $_surname);
         
     if ($stmt->execute()) {
-        echo "Nuovo record inserito con successo";
+        //echo "Nuovo record inserito con successo";
         header("Location: ../view/loginPage.php");
     } else {
-        echo "Errore nell'inserimento del record: " . $stmt->errorInfo();
+        header("Location: ../view/errors/connectionErrorPage.php?error=" . $stmt->errorInfo());   
     }
 ?>

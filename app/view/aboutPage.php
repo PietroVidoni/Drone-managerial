@@ -55,7 +55,8 @@
             <div class="timeline-image">
               <h4>Diventa parte
                 <br>della nostra
-                <br>storia!</h4>
+                <br>storia!
+              </h4>
             </div>
           </li>
         </ul>
