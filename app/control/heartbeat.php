@@ -9,6 +9,7 @@
 
     if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 600)) {
         header("Location: ../model/logout.php?hearBeatError"); 
+        die();
     }
     
     $stmt = $conn->prepare("UPDATE utenti SET last_activity = NOW() WHERE id = :user_id");

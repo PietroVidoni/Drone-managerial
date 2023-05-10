@@ -25,9 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($stmt->execute()) {
     header('Location: ../view/homePage.php?page=dronePage');
-    exit();
+    die();
   } else {
     header("Location: errors/connectionErrorPage.php?error=" . $stmt->errorInfo());
+    die();
   }
 }
 ?>

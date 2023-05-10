@@ -5,7 +5,7 @@ include '../control/enableConnection.php';
 
 if (!isset($_SESSION['user_status']) || $_SESSION['user_status'] === false) {
     header('Location: ../view/loginPage.php');
-    exit();
+    die();
 }
 
 $user_id = $_SESSION['user_info']['user_id'];

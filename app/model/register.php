@@ -18,13 +18,13 @@
     if ($_password !== $_password2) {
         $error = "Passwords do not match";
         header("Location: ../view/registerPage.php?error=$error");
-        exit();
+        die();
     }
     
     if ($_password === $_username) {
         $error = "Username and password can't match";
         header("Location: ../view/registerPage.php?error=$error");
-        exit();
+        die();
     }
 
     $stmt = $conn->prepare("SELECT COUNT(*) FROM utenti WHERE username = :username");
@@ -34,7 +34,7 @@
     if ($count > 0) {
         $error = "Username already in use";
         header("Location: ../view/registerPage.php?error=$error");
-        exit();
+        die();
     }
 
     $stmt = $conn->prepare("SELECT COUNT(*) FROM utenti WHERE email = :email");
@@ -44,7 +44,7 @@
     if ($count > 0) {
         $error = "Email already in use";
         header("Location: ../view/registerPage.php?error=$error");
-        exit();
+        die();
     }
 
     $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
@@ -56,10 +56,11 @@
     $stmt->bindParam(':nome', $_name);
     $stmt->bindParam(':cognome', $_surname);
         
-    if ($stmt->execute()) {
-        //echo "Nuovo record inserito con successo";
+    if ($stmt->execute()) { //succsess
         header("Location: ../view/loginPage.php");
+        die();
     } else {
-        header("Location: ../view/errors/connectionErrorPage.php?error=" . $stmt->errorInfo());   
+        header("Location: ../view/errors/connectionErrorPage.php?error=" . $stmt->errorInfo());  
+        die(); 
     }
 ?>

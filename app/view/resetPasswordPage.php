@@ -25,8 +25,8 @@ if ($stmt->rowCount() > 0) {
 
 if (!$valid) {
     // show an error message
-    //echo "Invalid or expired token.";
     header("Location: forgotPasswordPage.php?valid=Invalid or expired token");
+    die();
 }
 
 ?>

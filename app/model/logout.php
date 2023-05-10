@@ -28,7 +28,9 @@ $dbc->closeConnection();
 
 if(isset($_GET['reason'])){
     header("Location: ../view/loginPage.php?reason=".$_GET['reason']);
+    die();
 }else{
     header("Location: ../view/loginPage.php");
+    die();
 }
 ?>

@@ -33,7 +33,9 @@ if ($valid) {
     $stmt->execute(array(':password' => $hashedPassword, ':id' => $user['id']));
 
     header("Location: loginPage.php");
+    die();
 } else {
     header("Location: resetPasswordPage.php?token=".$token."&valid=".$errorMessage);
+    die();
 }
 ?>
