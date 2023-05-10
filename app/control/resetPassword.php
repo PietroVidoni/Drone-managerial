@@ -56,13 +56,13 @@ if (isset($_POST['email'])) {
         }
 
         header("Location: ../view/forgotPasswordPage.php");
-        exit();
+        die();
     } catch (Exception $e) {
         header("Location: ../view/errors/genericErrorPage.php?error=" . urlencode($e->getMessage()));
-        exit();
+        die();
     }
 } else {
     header("Location: ../view/errors/genericErrorPage.php?error=Session%20Lost");
-    exit();
+    die();
 }
 ?>
