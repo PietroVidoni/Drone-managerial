@@ -63,7 +63,7 @@ $jsonArray = json_encode($rows);
 
                 <!-- Order list logic script -->
                 <script>
-                    const myArray = JSON.parse('<?php echo $jsonArray; ?>');
+                    const updatedList = JSON.parse('<?php echo $jsonArray; ?>');
 
                     document.getElementById("search-btn").addEventListener('click', () => {
                         const keywords = document.getElementById("keywords").value;
@@ -92,7 +92,7 @@ $jsonArray = json_encode($rows);
                         }
 
                         if (sortFunction) {
-                            sortFunction(myArray);
+                            sortFunction(updatedList);
                         }
 
                         const xhr = new XMLHttpRequest();
@@ -104,7 +104,7 @@ $jsonArray = json_encode($rows);
 
                         const data = {
                             selector: selector,
-                            drones: myArray,
+                            drones: updatedList,
                             keywords: keywords || null
                         };
 
@@ -114,8 +114,9 @@ $jsonArray = json_encode($rows);
                         
                         var infoButtons = document.querySelectorAll('.info');
                         var flyButtons = document.querySelectorAll('.fly');
+                        var removeButtons = document.querySelectorAll('.remove');
 
-                        updatePopUpButtons(infoButtons, flyButtons);
+                        updateButtons(infoButtons, flyButtons, removeButtons);
                     });
                 </script>
 
@@ -131,12 +132,12 @@ $jsonArray = json_encode($rows);
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $jsonArray = file_get_contents('php://input');
-                        $myArray = json_decode($jsonArray, true);
+                        $updatedList = json_decode($jsonArray, true);
 
-                        printList($myArray);
+                        printList($updatedList);
                     } else {
-                        $myArray = json_decode($jsonArray, true);
-                        printList($myArray);
+                        $updatedList = json_decode($jsonArray, true);
+                        printList($updatedList);
                     }
                     ?>
 
@@ -178,8 +179,9 @@ $jsonArray = json_encode($rows);
 
                     var infoButtons = document.querySelectorAll('.info');
                     var flyButtons = document.querySelectorAll('.fly');
+                    var removeButtons = document.querySelectorAll('.remove');
 
-                    updatePopUpButtons(infoButtons, flyButtons);
+                    updateButtons(infoButtons, flyButtons, removeButtons);
                 </script>
             </div>
         </div>

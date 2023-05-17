@@ -52,7 +52,7 @@ function updateList() {
     xhttp.send();
 }
 
-function updatePopUpButtons(infoButtons, flyButtons){
+function updateButtons(infoButtons, flyButtons, removeButtons){
     for (var i = 0; i < infoButtons.length; i++) {
         infoButtons[i].addEventListener('click', function () {
             popupEl.style.display = 'block';
@@ -76,6 +76,26 @@ function updatePopUpButtons(infoButtons, flyButtons){
             var form = document.createElement('form');
             form.method = 'post';
             form.action = '../view/homePage.php?page=startFlyPage';
+        
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'droneID';
+            input.value = droneID;
+        
+            form.appendChild(input);
+        
+            document.body.appendChild(form);
+            form.submit();
+        }); 
+    }
+
+    for (var i = 0; i < removeButtons.length; i++) {
+        removeButtons[i].addEventListener('click', function() {
+            var droneID = this.getAttribute('data-id');
+        
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = '../model/removeDrone.php';
         
             var input = document.createElement('input');
             input.type = 'hidden';

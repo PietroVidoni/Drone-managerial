@@ -43,6 +43,8 @@ function printList($array)
         echo 'data-model="' . $drone['modello'] . '">Info</button>';
         echo '<button href="#" class="btn d-block w-100 d-sm-inline-block btn-info fly"';
         echo 'data-id="' . $drone['id'] . '">Start fly</button>';
+        echo '<button href="#" class="btn d-block w-100 d-sm-inline-block btn-danger remove"';
+        echo 'data-id="' . $drone['id'] . '">Remove</button>';
         echo '</div>';
         echo '</div>';
     }
