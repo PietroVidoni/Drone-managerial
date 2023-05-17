@@ -75,7 +75,7 @@ if (isset($_POST['droneID'])) {
                         <input type="hidden" name="droneID" value="<?php echo $droneID; ?>">
                         <div class="form-group">
                             <label for="tempo_di_volo">Tempo di volo:</label>
-                            <input type="text" class="form-control" id="tempo_di_volo" name="tempo_di_volo" required>
+                            <input type="number" class="form-control" id="tempo_di_volo" name="tempo_di_volo" required>
                         </div>
                         <div class="form-group">
                             <label for="coordinate">Coordinate:</label>

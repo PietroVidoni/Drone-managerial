@@ -10,8 +10,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $jsonArray = json_encode($rows);
 
-//$conn = null;
-//TODO check if not close connection is best practice 
 ?>
 
 <div class="container page-title">
@@ -36,24 +34,14 @@ $jsonArray = json_encode($rows);
                                 <input type="text" class="form-control" placeholder="Enter Your Keywords" id="keywords">
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 my-3">
-                            <div class="select-container">
-                                <select class="custom-select" id="select">
-                                    <option selected="">modello</option>
-                                    <option value="nome">nome</option>
-                                    <option value="ultima_manutenzione">ultima manutenzione</option>
-                                    <option value="anno_acquisto">anno acquisto</option>
-                                    <option value="ore_di_volo">ore di volo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 my-3">
+                        <div class="col-md-6 col-lg-6 my-3">
                             <button type="button" class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
-                                Search
+                                Refresh
                             </button>
                         </div>
                         <div class="col-md-6 col-lg-3 my-3">
-                            <a href="homePage.php?page=registerDronePage" type="buttonRegister" class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
+                            <a href="homePage.php?page=registerDronePage" type="buttonRegister"
+                                class="btn btn-lg btn-block btn-light btn-custom" id="search-btn">
                                 Register drone
                             </a>
                         </div>
@@ -66,40 +54,20 @@ $jsonArray = json_encode($rows);
                     const updatedList = JSON.parse('<?php echo $jsonArray; ?>');
 
                     document.getElementById("search-btn").addEventListener('click', () => {
-                        const keywords = document.getElementById("keywords").value;
-                        const selector = document.getElementById("select").value;
-
-                        let sortFunction;
-
-                        switch (selector) {
-                            case "nome":
-                                sortFunction = sort_name;
-                                break;
-                            case "modello":
-                                sortFunction = sort_model;
-                                break;
-                            case "ultima_manutenzione":
-                                sortFunction = sort_last_man;
-                                break;
-                            case "anno_acquisto":
-                                sortFunction = sort_year;
-                                break;
-                            case "ore_di_volo":
-                                sortFunction = sort_fly_hours;
-                                break;
-                            default:
-                                sortFunction = null;
-                        }
-
-                        if (sortFunction) {
-                            sortFunction(updatedList);
-                        }
 
                         const xhr = new XMLHttpRequest();
                         xhr.onreadystatechange = () => {
-                            if (this.readyState === 4 && this.status === 200) {
-                                document.querySelector('.filter-result').innerHTML = this.responseText;
+                            if (xhr.readyState === 4) {
+                                if (xhr.status === 200) {
+                                    document.querySelector('.filter-result').innerHTML = xhr.responseText;
+                                } else {
+                                    console.error('Errore nella richiesta AJAX:', xhr.status);
+                                }
                             }
+                        };
+
+                        xhr.onerror = () => {
+                            console.error('Errore nella richiesta AJAX.');
                         };
 
                         const data = {
@@ -111,7 +79,8 @@ $jsonArray = json_encode($rows);
                         xhr.open("POST", "../control/updateList.php", true);
                         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                         xhr.send(JSON.stringify(data));
-                        
+
+
                         var infoButtons = document.querySelectorAll('.info');
                         var flyButtons = document.querySelectorAll('.fly');
                         var removeButtons = document.querySelectorAll('.remove');
@@ -150,7 +119,8 @@ $jsonArray = json_encode($rows);
                         <div class='modal-content'>
                             <div class='modal-header'>
                                 <h3 class='modal-title'></h3>
-                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                    aria-label='Close'></button>
                             </div>
                             <div class='modal-body'>
                                 <p></p>
@@ -167,11 +137,11 @@ $jsonArray = json_encode($rows);
                     var titleEl = popupEl.querySelector('h3');
                     var descriptionEl = popupEl.querySelector('p');
 
-                    closeButtonEl.addEventListener('click', function() {
+                    closeButtonEl.addEventListener('click', function () {
                         popupEl.style.display = 'none';
                     });
 
-                    window.addEventListener('click', function(event) {
+                    window.addEventListener('click', function (event) {
                         if (event.target === popupEl) {
                             popupEl.style.display = 'none';
                         }
