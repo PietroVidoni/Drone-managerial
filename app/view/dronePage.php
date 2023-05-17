@@ -111,9 +111,11 @@ $jsonArray = json_encode($rows);
                         xhr.open("POST", "../control/updateList.php", true);
                         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                         xhr.send(JSON.stringify(data));
+                        
                         var infoButtons = document.querySelectorAll('.info');
+                        var flyButtons = document.querySelectorAll('.fly');
 
-                        updatePopUpButtons(infoButtons);
+                        updatePopUpButtons(infoButtons, flyButtons);
                     });
                 </script>
 
@@ -175,7 +177,9 @@ $jsonArray = json_encode($rows);
                     });
 
                     var infoButtons = document.querySelectorAll('.info');
-                    updatePopUpButtons(infoButtons);
+                    var flyButtons = document.querySelectorAll('.fly');
+
+                    updatePopUpButtons(infoButtons, flyButtons);
                 </script>
             </div>
         </div>

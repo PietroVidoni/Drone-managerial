@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $data = json_decode(file_get_contents("php://input"), true);
 
 $drones = $data['drones'];
@@ -15,12 +13,13 @@ foreach ($drones as $drone) {
 }
 
 printList($results);
-function printList($array) {
+function printList($array)
+{
 
-    
+
     foreach ($array as $drone) {
-    
-        $icon = $drone['icon'] != null ? $drone['icon'] : ".\assets\img\png\default_drone.png" ;
+
+        $icon = $drone['icon'] != null ? $drone['icon'] : ".\assets\img\png\default_drone.png";
 
         echo '<div class="job-box d-md-flex align-items-center justify-content-between mb-30">';
         echo '<div class="job-left my-4 d-md-flex align-items-center flex-wrap">';
@@ -42,6 +41,8 @@ function printList($array) {
         echo 'data-last_man="' . $drone['ultima_manutenzione'] . '"';
         echo 'data-fly_hours="' . $drone['ore_di_volo'] . '"';
         echo 'data-model="' . $drone['modello'] . '">Info</button>';
+        echo '<button href="#" class="btn d-block w-100 d-sm-inline-block btn-info fly"';
+        echo 'data-id="' . $drone['id'] . '">Start fly</button>';
         echo '</div>';
         echo '</div>';
     }

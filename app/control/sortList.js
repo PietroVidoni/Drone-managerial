@@ -52,7 +52,7 @@ function updateList() {
     xhttp.send();
 }
 
-function updatePopUpButtons(infoButtons){
+function updatePopUpButtons(infoButtons, flyButtons){
     for (var i = 0; i < infoButtons.length; i++) {
         infoButtons[i].addEventListener('click', function () {
             popupEl.style.display = 'block';
@@ -65,8 +65,28 @@ function updatePopUpButtons(infoButtons){
             
             titleEl.innerHTML = name;
 
-            //TODO add fly hours
             descriptionEl.innerHTML = "Model: " + model + "<br>Ore volo: " + fly_hours + "<br>Last Manutenction: " + last_man;
         });
+    }
+
+    for (var i = 0; i < flyButtons.length; i++) {
+        flyButtons[i].addEventListener('click', function() {
+            var droneID = this.getAttribute('data-id');
+        
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = '../view/homePage.php?page=startFly';
+        
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'droneID';
+            input.value = droneID;
+        
+            form.appendChild(input);
+        
+            document.body.appendChild(form);
+            form.submit();
+        });
+        
     }
 }
