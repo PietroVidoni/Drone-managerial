@@ -7,7 +7,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $anno_acquisto = $_POST["buyingDate"];
   $ore_di_volo = $_POST["flyHours"];
   $ultima_manutenzione = $_POST['lastManutention'];
-  $icon = $_POST['icon'];
+
+  if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
+    $file = $_FILES['icon'];
+
+    $targetDirectory = "assets/img/png/user-icons/";
+    $targetFile = $targetDirectory . basename($file['name']);
+
+    if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+      echo '<div class="page-title">L\'immagine è stata salvata correttamente.</div>';
+      $file = $targetFile;
+    } else {
+      echo "Si è verificato un errore durante il salvataggio dell'immagine.";
+    }
+  } else {
+    echo '<div class="page-title"> Si è verificato un errore durante il caricamento dell\'immagine.</div>';
+    $file = null;
+  }
 
   $user_id = $_SESSION['user_info']['user_id'];
 
@@ -21,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
   $stmt->bindParam(':ore_di_volo', $ore_di_volo, PDO::PARAM_INT);
   $stmt->bindParam(':ultima_manutenzione', $ultima_manutenzione, PDO::PARAM_STR);
-  $stmt->bindParam(':icon', $icon, PDO::PARAM_STR);
+  $stmt->bindParam(':icon', $file, PDO::PARAM_STR);
 
   if ($stmt->execute()) {
     header('Location: ../view/homePage.php?page=dronePage');
@@ -38,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="col-12">
       <h3 class="h3-reg">Register your Drone</h3>
       <p class="p-reg">Fill in the data below.</p>
-      <form class="needs-validation" method="post" id="form">
+      <form class="needs-validation" method="post" id="form" enctype="multipart/form-data">
         <div class="form-group">
           <label for="name">Drone name</label>
           <input class="form-control" type="text" id="name" name="name" required>
@@ -70,7 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group form-check">
           <input class="form-check-input" type="checkbox" id="termsAndConditions" name="termsAndConditions" required>
-          <label class="form-check-label" for="termsAndConditions">I agree to the <a href="#">Terms and Conditions</a></label>
+          <label class="form-check-label" for="termsAndConditions">I agree to the <a href="#">Terms and
+              Conditions</a></label>
         </div>
         <div class="form-group">
           <button id="submit" type="submit" class="btn btn-primary">Register</button>

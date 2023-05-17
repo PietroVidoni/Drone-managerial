@@ -1,12 +1,10 @@
 <?php
-// file di configurazione di gettext
-$locale = "it_IT"; // lingua di default
+$locale = "it_IT";
 putenv("LANG=$locale");
 setlocale(LC_ALL, $locale);
 bindtextdomain("messages", "./locale");
 textdomain("messages");
 
-// Cambio la lingua
 if (isset($_POST["lingua"])) {
     $locale = $_POST["lingua"];
     putenv("LANG=$locale");

@@ -75,7 +75,7 @@ function updatePopUpButtons(infoButtons, flyButtons){
         
             var form = document.createElement('form');
             form.method = 'post';
-            form.action = '../view/homePage.php?page=startFly';
+            form.action = '../view/homePage.php?page=startFlyPage';
         
             var input = document.createElement('input');
             input.type = 'hidden';

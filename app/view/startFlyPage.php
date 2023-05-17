@@ -22,7 +22,6 @@ if (isset($_POST['droneID'])) {
                                 header("../model/logout.php?reason=Something%20Went%20Wrong");
                                 exit();
                             }
-
                             
                             $dbc = Database::getInstance();
                             $conn = $dbc->getConnection();
