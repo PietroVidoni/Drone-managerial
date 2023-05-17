@@ -22,10 +22,10 @@ if (isset($_POST['droneID'])) {
                                 header("../model/logout.php?reason=Something%20Went%20Wrong");
                                 exit();
                             }
-                            
+
                             $dbc = Database::getInstance();
                             $conn = $dbc->getConnection();
-                            
+
                             $user_id = $_SESSION['user_info']['user_id'];
                             $droneID = $_POST['droneID'];
                             $tempo_di_volo = $_POST["tempo_di_volo"];
@@ -51,7 +51,7 @@ if (isset($_POST['droneID'])) {
                                 $stmt->execute();
                                 echo "Record di volo inserito con successo!";
                             } catch (PDOException $e) {
-                                header("Location: errors/internalErrorPage.php?error=".$e->getMessage());
+                                header("Location: errors/internalErrorPage.php?error=" . $e->getMessage());
                                 exit();
                             }
 
@@ -65,14 +65,10 @@ if (isset($_POST['droneID'])) {
                                     $stmt_update->execute();
                                     echo "\nOre di volo del drone aggiornate con successo!";
                                 } catch (PDOException $e) {
-                                    header("Location: errors/internalErrorPage.php?error=".$e->getMessage());
+                                    header("Location: errors/internalErrorPage.php?error=" . $e->getMessage());
                                     exit();
                                 }
                             }
-
-                            $stmt = null;
-                            $stmt_update = null;
-                            $conn = null;
                         }
                         ?>
 
@@ -104,6 +100,39 @@ if (isset($_POST['droneID'])) {
                                 <button type="submit" class="btn btn-primary" name="submit">Invia</button>
                             </div>
                         </form>
+                        <?php $dbc = Database::getInstance();
+                        $conn = $dbc->getConnection();
+
+                        $sql_select = "SELECT * FROM record_di_volo WHERE drone_id = :droneID";
+                        $stmt_select = $conn->prepare($sql_select);
+                        $stmt_select->bindParam(':droneID', $droneID);
+
+                        try {
+                            $stmt_select->execute();
+                            $flightRecords = $stmt_select->fetchAll(PDO::FETCH_ASSOC);
+                        } catch (PDOException $e) {
+                            header("Location: errors/internalErrorPage.php?error=" . $e->getMessage());
+                            exit();
+                        }
+
+                        if (!empty($flightRecords)) {
+                            echo "<h4>Flight Records:</h4>";
+                            echo "<ul>";
+                            foreach ($flightRecords as $record) {
+                                echo "<li>Tempo di volo: " . $record['tempo_di_volo'] . "</li>";
+                                echo "<li>Coordinate: " . $record['coordinate'] . "</li>";
+                                echo "<li>Luogo di partenza: " . $record['luogo_di_partenza'] . "</li>";
+                                echo "<li>Note: " . $record['note'] . "</li>";
+                                echo "<li>Data di volo: " . $record['data_volo'] . "</li>";
+                                echo "<hr>";
+                            }
+                            echo "</ul>";
+                        }
+
+                        $stmt = null;
+                        $stmt_update = null;
+                        $conn = null;
+                        ?>
                     </div>
                 </div>
             </div>
